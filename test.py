@@ -27,11 +27,13 @@ session_auth_2 = usdt_perpetual.HTTP(
 
 print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
 
-print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
+print(session_auth_2.get_wallet_balance()['result']['USDT']['equity'])
 balance = session_auth.get_wallet_balance()['result']['USDT']['equity']
+balance2 = session_auth_2.get_wallet_balance()['result']['USDT']['equity']
 order = balance / 100 * 5
 print(order)
-
+order2 = balance2 / 100 * 3
+print(order2)
 chats = []
 last_date = None
 size_chats = 200
@@ -181,7 +183,7 @@ while True:
                                     symbol=symbol
                                 )['result'][0]['last_price']
                                 balance = session_auth.get_wallet_balance()['result']['USDT']['equity']
-                                balance2 = session_auth.get_wallet_balance()['result']['USDT']['equity']
+                                balance2 = session_auth_2.get_wallet_balance()['result']['USDT']['equity']
                                 order = float(balance) / 100 * 5
                                 order2 = float(balance2) / 100 * 3
                                 qty = float(order) / float(price)
