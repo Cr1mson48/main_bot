@@ -12,15 +12,15 @@ session_unauth = inverse_perpetual.HTTP(
 print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
 
 
-
-
-session_auth = usdt_perpetual.HTTP(
-    endpoint="https://api-testnet.bybit.com",
-    api_key='gw90bhuJCb29ZaeDU9',
-    api_secret='KwqbUpaV1CyCv9CLcSiRHcbzv6S1bgxogAsb'
-)
-session_unauth = inverse_perpetual.HTTP(
-    endpoint="https://api-testnet.bybit.com"
-)
-
-print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
+print(len(str(0.0564)))
+print(round(0.2, 3))
+#session_auth = usdt_perpetual.HTTP(
+#    endpoint="https://api-testnet.bybit.com",
+#    api_key='gw90bhuJCb29ZaeDU9',
+#    api_secret='KwqbUpaV1CyCv9CLcSiRHcbzv6S1bgxogAsb'
+#)
+#session_unauth = inverse_perpetual.HTTP(
+#    endpoint="https://api-testnet.bybit.com"
+#)
+#
+#print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
