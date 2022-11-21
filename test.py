@@ -17,6 +17,15 @@ session_unauth = inverse_perpetual.HTTP(
     endpoint="https://api.bybit.com"
 )
 
+#API Ignat
+session_auth_2 = usdt_perpetual.HTTP(
+    endpoint="https://api.bybit.com",
+    api_key='jkVW1Q7h6GvTawBHIT',
+    api_secret='I0gX1MLecoi8SlyCIIUEWo315VrWD2bs6moL'
+)
+
+
+print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
 
 print(session_auth.get_wallet_balance()['result']['USDT']['equity'])
 balance = session_auth.get_wallet_balance()['result']['USDT']['equity']
@@ -113,6 +122,12 @@ while True:
                                                     buy_leverage=10,
                                                     sell_leverage=10
                                                 ))
+                                                print(session_auth_2.cross_isolated_margin_switch(
+                                                    symbol=symbol,
+                                                    is_isolated=True,
+                                                    buy_leverage=10,
+                                                    sell_leverage=10
+                                                ))
                                             except Exception as e:
                                                 print(e)
                                 if 'Текущая цена' in i and 'entry' in i:
@@ -166,9 +181,13 @@ while True:
                                     symbol=symbol
                                 )['result'][0]['last_price']
                                 balance = session_auth.get_wallet_balance()['result']['USDT']['equity']
+                                balance2 = session_auth.get_wallet_balance()['result']['USDT']['equity']
                                 order = float(balance) / 100 * 5
+                                order2 = float(balance2) / 100 * 3
                                 qty = float(order) / float(price)
+                                qty2 = float(order2) / float(price)
                                 qty = qty * 10
+                                qty2 = qty2 * 10
                                 #qty_m = qty / 100 * float(market_procent[0:-2])
                                 #qty_m = qty_m * 10
                                 #qty_2 = qty / 100 * float(st_one_procent[0:-2])
@@ -191,6 +210,17 @@ while True:
                                     count_l = 2
                                 else:
                                     count_l = int(len(str(tk1))) - 3
+                                print(session_auth_2.place_active_order(
+                                    symbol=symbol,
+                                    side=side,
+                                    order_type="Market",
+                                    qty=round(qty2, 3),
+                                    take_profit=round(float(tk1), count),
+                                    stop_loss=round(float(stop_loss), count_l),
+                                    time_in_force="GoodTillCancel",
+                                    reduce_only=False,
+                                    close_on_trigger=False
+                                ))
                                 print(session_auth.place_active_order(
                                     symbol=symbol,
                                     side=side,
